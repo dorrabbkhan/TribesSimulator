@@ -1,6 +1,7 @@
 import species
 import random
 import gengraph
+from csv import writer
 """
 Main driver program for species generator
 Contains all functions required to run the program
@@ -227,15 +228,13 @@ def make_first_warriors(first_pop):
 
 def write_to_file():
     # Function to write output to the file 'data.csv'
-    f = open('data.csv', 'a+')
-    traitsum = []
-    for tribe in range(5):
-        population = len(tribes[tribe])
-        traitsum.append(str(sum_traits(tribe)/(population*12)))
-    line = ','.join(traitsum)
-    print()
-    f.write(line + '\n')
-    f.close()
+    with open('data.csv', 'a+') as f:
+        csv_writer = writer(f)
+        traitsum = []
+        for tribe in range(5):
+            population = len(tribes[tribe])
+            traitsum.append(str(sum_traits(tribe)/(population*12)))
+        csv_writer.writerow(traitsum)
 
 def break_friends(warrior):
     # randomly removes friend(s) of warrior
@@ -260,8 +259,15 @@ def make_friends(warrior):
             if chance > 0.75:
                 mutual_add(warrior, pot_frnd)
 
+def write_column_names():
+    # Write column names on top of the csv file
+    with open('data.csv', 'w+') as f: 
+        csv_writer = writer(f)
+        csv_writer.writerow(list(species.TRIBES))
+
 def driver():
     # Driver function for the main program
+    write_column_names()
     make_first_warriors(first_pop)
     for i in range(years):
         print(f"Year is {i+1}")
@@ -275,12 +281,6 @@ def driver():
 
     gengraph.genplot()
     input()
-
-# Write column names on top of the csv file
-f = open('data.csv', 'w+')
-line = ','.join(list(species.TRIBES))
-f.write(line + '\n')
-f.close()
 
 # Setup initial variables
 first_low, first_high, next_low, next_high, first_pop, years = init_setup()
