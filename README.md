@@ -3,14 +3,14 @@
 
   
 
-Simulation of battles between tribes for the control of a radiation bunker, inspired from Netflix show 'The 100'
+Simulation of growth of tribes and the traits of their warriors over time, inspired from Netflix show 'The 100'
 
   
 
 ## Concept
 
   
-This hit me after watching Season 4 (I think) of The 100, where 12 different tribes fight for the control of a bunker to protect themselves from an incoming radiation wave in a post-apocalyptic world. Pretty geeky, I know. The idea for this program is to simulate the growth of the tribes starting from 5 or more warriors each. This can give a visual representation of how the development of a tribe varies depending on the number and starting traits of the first warriors, and the starting traits of each newborn in the tribe. Each warrior (including the first warriors) has 12 traits, with values ranging from -100 to 100, and the population of each tribe grows by 4% per year. A warrior dies after reaching 60 years of age. The user specifies the range for the starting traits for the first warriors and for the newborns. Warriors that are friends with each other would influence each other's traits. The sum of all traits for all warriors for each of the five tribes are counted and stored each year, and in the end a representation of the progress of these sums is shown.
+This hit me after watching Season 4 (I think) of The 100, where 12 different tribes fight for the control of a bunker to protect themselves from an incoming radiation wave in a post-apocalyptic world. Pretty geeky, I know. The idea for this program is to simulate the growth of the tribes starting from 5 or more warriors each. This can give a visual representation of how the development of a tribe varies wildly depending on the miniscule number and starting traits of the first warriors, and the starting traits of each newborn in the tribe, even when they're made to be seemingly very similar. Each warrior (including the first warriors) has 12 traits, with values ranging from -100 to 100, and the population of each tribe grows by 4% per year. A warrior dies after reaching 60 years of age. The user specifies the range for the starting traits for the first warriors and for the newborns. Warriors that are friends with each other would influence each other's traits. The sum of all traits for all warriors for each of the five tribes are counted and stored each year, and in the end a representation of the progress of these sums is shown.
 
   
 
@@ -49,6 +49,7 @@ The following packages are required to run this simulation:
 - Random
 - NumPy
 - Matplotlib
+- CSV
 
 ## How to execute
 
