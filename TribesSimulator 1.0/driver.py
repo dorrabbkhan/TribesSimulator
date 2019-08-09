@@ -228,7 +228,7 @@ def make_first_warriors(first_pop):
 
 def write_to_file():
     # Function to write output to the file 'data.csv'
-    with open('data.csv', 'a+') as f:
+    with open('data.csv', 'a+', newline = '') as f:
         csv_writer = writer(f)
         traitsum = []
         for tribe in range(5):
@@ -261,7 +261,7 @@ def make_friends(warrior):
 
 def write_column_names():
     # Write column names on top of the csv file
-    with open('data.csv', 'w+') as f: 
+    with open('data.csv', 'w+', newline = '') as f: 
         csv_writer = writer(f)
         csv_writer.writerow(list(species.TRIBES))
 
