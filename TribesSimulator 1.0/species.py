@@ -1,7 +1,8 @@
-import random
 """
 File for classes to use in the tribe simulator
 """
+
+import random
 
 TRAITS = (
     'strength',
@@ -30,25 +31,25 @@ class Tribe:
     Tribe class
     """
 
-    def __init__(self, id):
+    def __init__(self, tribe_id):
         """
         Attributes are name, tribe ID and set of warriors ID's
         """
-        self.name = TRIBES[id]
-        self.id = id
+        self.name = TRIBES[tribe_id]
+        self.tribe_id = tribe_id
         self.warriors = set()
 
-    def add_warrior(self, warriorid):
+    def add_warrior(self, warrior_id):
         """
         Add warrior to tribe
         """
-        self.warriors.add(warriorid)
+        self.warriors.add(warrior_id)
 
-    def kill_warrior(self, warriorid):
+    def kill_warrior(self, warrior_id):
         """
         Remove warrior from tribe
         """
-        self.warriors.remove(warriorid)
+        self.warriors.remove(warrior_id)
 
     def __len__(self):
         """
@@ -77,7 +78,7 @@ class Warrior:
     """
     Warrior class
     """
-    def __init__(self, tribe, friends, id):
+    def __init__(self, tribe, friends, warrior_id):
         """
         Attributes are tribe, traits, set of friends, age and ID
         """
@@ -85,7 +86,7 @@ class Warrior:
         self.traits = {trait: random.randint(-12, 15) for trait in TRAITS}
         self.friends = friends
         self.age = 0
-        self.id = id
+        self.warrior_id = warrior_id
 
     def increase_trait(self, trait, inc):
         """
