@@ -331,48 +331,36 @@ def inc_people():
     # print population
 
     people_increase = int(population * 0.04)
-    # calculate increase in population
+    # calculate increase in population as 4% of total population
 
     for i in range(people_increase):
         create_warrior()
         # create new warriors
 
 
-def check_death():
+def check_death(deaths):
     """
     Increases warriors' age, checks if a warrior is dead,
     and if so then removes it
     from its friends' lists, from its tribe and from the
     dict of all warriors
     """
-    deaths = set()
-    # initialize empty deaths set
-
-    for warrior in ALL_WARRIORS:
-        # for each warrior
-
-        dead = ALL_WARRIORS[warrior].inc_age()
-        # see if inc_age returns True for death of warrior
-
-        if dead:
-            for friend in ALL_WARRIORS[warrior].friends:
-                # for each of this warrior's friends
-
-                ALL_WARRIORS[friend].del_friend(warrior)
-                # delete this warrior from their friend's list
-
-            tribe = ALL_WARRIORS[warrior].tribe
-            # select the warrior's tribe
-
-            deaths.add(warrior)
-            # add warrior to deaths
-
-            TRIBES[tribe].kill_warrior(warrior)
-            # remove warrior from tribe
 
     for warrior in deaths:
+        for friend in ALL_WARRIORS[warrior].friends:
+            # for each of this warrior's friends
+
+            ALL_WARRIORS[friend].del_friend(warrior)
+            # delete this warrior from their friend's list
+
+        tribe = ALL_WARRIORS[warrior].tribe
+        # select the warrior's tribe
+
+        TRIBES[tribe].kill_warrior(warrior)
+        # remove warrior from tribe
+
         ALL_WARRIORS.pop(warrior)
-        # pop each warrior in deaths set from the dict of all warriors
+        # pop warrior from the dict of all warriors
 
 
 def make_first_warriors(first_pop):
@@ -496,6 +484,9 @@ def driver():
     for i in range(YEARS):
         # for each year
 
+        deaths = set()
+        # initialize deaths set
+
         print(f"Year is {i+1}")
         # print year
 
@@ -512,7 +503,14 @@ def driver():
             influence(warrior)
             # randomly influence traits
 
-        check_death()
+            death = ALL_WARRIORS[warrior].inc_age()
+            # increase age and see if warrior is past 60
+
+            if death:
+                deaths.add(warrior)
+                # add warrior to deaths if warrior is past 60
+
+        check_death(deaths)
         # check death of each warrior
 
         write_to_file()
